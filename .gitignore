@@ -12,6 +12,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# Migration files
+TimeTable_API/Migrations/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
