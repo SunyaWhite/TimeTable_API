@@ -30,9 +30,10 @@ namespace TimeTable_API
         {
             services.AddDbContext<LessonContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<ITimeTableParser, TimetableParser>();
-            services.AddScoped<IGetFirstDate, GetFirstDate>();
-            services.AddScoped<DataCheckAttribute>();
+            services.AddSingleton<ITimeTableParser, TimetableParser>(); // Добавление сервиса для получения списка пар с сайта расписания
+            services.AddScoped<IGetFirstDate, GetFirstDate>(); // Добавление сервиса для получения даты начала занятий
+            services.AddScoped<DataAddCheckAttribute>(); // Добавления фильтра для метода AddNewLesson
+            services.AddScoped<DataEditCheckAttribute>(); // Добавления фильтра для метода EdditLesson
             services.AddMemoryCache();
         }
 

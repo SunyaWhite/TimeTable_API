@@ -48,7 +48,7 @@ namespace TimeTable_API.Controllers
 
         // Добавляет в базу данных новый элемент Lesson
         [HttpPost]
-        [ServiceFilter(typeof(DataCheckAttribute))] // Передача сервисов (DbContext) в фильтр. Вся проверка реализована в классе DataCheckAttribute в папке Filters
+        [ServiceFilter(typeof(DataAddCheckAttribute))] // Передача сервисов (DbContext) в фильтр. Вся проверка реализована в классе DataCheckAttribute в папке Filters
         public IActionResult AddNewLesson([FromBody] Lesson lesson)
         {
             var firstDate = DateTime.ParseExact(_Cache.Get<string>("FirstDate"), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture); // Измение номера недели
@@ -61,7 +61,7 @@ namespace TimeTable_API.Controllers
 
         // Вносит изменение в существующий элемент Lesson
         [HttpPut]
-        [ServiceFilter(typeof(DataCheckAttribute))] // Передача сервисов (DbContext) в фильтр. Вся проверка реализована в классе DataCheckAttribute в папке Filters
+        [ServiceFilter(typeof(DataEditCheckAttribute))] // Передача сервисов (DbContext) в фильтр. Вся проверка реализована в классе DataCheckAttribute в папке Filters
         public IActionResult EditLesson([FromBody] Lesson lesson)
         {
             var firstDate = DateTime.ParseExact(_Cache.Get<string>("FirstDate"), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture); // Измение номера недели
